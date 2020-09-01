@@ -42,7 +42,7 @@ public class LinkList<T> implements Iterable<T> {
     }
 
     public T get(int i) {
-        if (head.next != null){
+        if (head.next != null) {
             Node n = head.next;
             for (int index = 0; index < i; index++) {
                 n = n.next;
@@ -93,6 +93,25 @@ public class LinkList<T> implements Iterable<T> {
             }
         }
         return -1;
+    }
+
+    /**
+     * 单链表反转
+     */
+    public void reverse() {
+        if (isEmpty()) return;
+        reverse(head.next);
+    }
+
+    private Node reverse(Node curr) {
+        if (curr.next == null) {
+            head.next = curr;
+            return curr;
+        }
+        Node pre = reverse(curr.next);
+        pre.next = curr;
+        curr.next = null;
+        return curr;
     }
 
     @Override
